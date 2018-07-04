@@ -4,6 +4,9 @@ export DEBIAN_FRONTEND=noninteractive
 ubuntu_version="`lsb_release -r | awk '{print $2}'`";
 major_version="`echo $ubuntu_version | awk -F. '{print $1}'`";
 
+# workaround for ubuntu 18.10
+sed -i s"/deb cdrom/#deb cdrom/" /etc/apt/sources.list
+
 # Disable release-upgrades
 sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades;
 
