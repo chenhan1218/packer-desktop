@@ -309,7 +309,7 @@
     "name": "ubuntu-lxde-desktop-18.04",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
-    "template": "ubuntu-18.04-amd64",
+    "template": "ubuntu-lxde-desktop-18.04-amd64",
     "version": "TIMESTAMP"
   }
 }

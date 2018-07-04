@@ -309,7 +309,7 @@
     "name": "ubuntu-mate-desktop-18.10",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
-    "template": "ubuntu-18.10-amd64",
+    "template": "ubuntu-mate-desktop-18.10-amd64",
     "version": "TIMESTAMP"
   }
 }

@@ -314,7 +314,7 @@
     "name": "ubuntu-desktop-16.04",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
-    "template": "ubuntu-16.04-amd64",
+    "template": "ubuntu-desktop-16.04-amd64",
     "version": "TIMESTAMP"
   }
 }
