@@ -279,7 +279,7 @@
         "../_common/sshd.sh",
         "scripts/networking.sh",
         "scripts/sudoers.sh",
-        "scripts/ubuntu-lxde-desktop.sh",
+        "scripts/lubuntu-desktop.sh",
         "scripts/vagrant.sh",
         "../_common/virtualbox.sh",
         "scripts/vmware.sh",
@@ -291,7 +291,7 @@
     }
   ],
   "variables": {
-    "box_basename": "ubuntu-lxde-desktop-18.10",
+    "box_basename": "lubuntu-desktop-18.04",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "disk_size": "65536",
@@ -302,14 +302,14 @@
     "hyperv_generation": "2",
     "hyperv_switch": "{{env `hyperv_switch`}}",
     "iso_checksum_type": "sha256",
-    "iso_name": "cosmic-server-amd64.iso",
+    "iso_name": "ubuntu-18.04-server-amd64.iso",
     "memory": "1024",
     "mirror": "http://cdimage.ubuntu.com",
-    "mirror_directory": "ubuntu-server/daily/current",
-    "name": "ubuntu-lxde-desktop-18.10",
+    "mirror_directory": "releases/18.04/release",
+    "name": "lubuntu-desktop-18.04",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
-    "template": "ubuntu-lxde-desktop-18.10-amd64",
+    "template": "lubuntu-desktop-18.04-amd64",
     "version": "TIMESTAMP"
   }
 }
