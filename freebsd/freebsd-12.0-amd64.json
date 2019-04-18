@@ -10,12 +10,12 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait>",
-        "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && bsdinstall script /tmp/installerconfig<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
       "guest_additions_mode": "disable",
-      "guest_os_type": "FreeBSD",
+      "guest_os_type": "FreeBSD_64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -56,11 +56,11 @@
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait>",
         "<wait5>",
-        "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && bsdinstall script /tmp/installerconfig<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
-      "guest_os_type": "freebsd",
+      "guest_os_type": "freebsd-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -91,7 +91,7 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.em0 em0<enter><wait>",
-        "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && bsdinstall script /tmp/installerconfig<enter><wait>"
       ],
       "boot_wait": "8s",
       "disk_size": "{{user `disk_size`}}",
@@ -155,7 +155,7 @@
         "mdmfs -s 100m md1 /tmp<enter><wait>",
         "mdmfs -s 100m md2 /mnt<enter><wait>",
         "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait>",
-        "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && bsdinstall script /tmp/installerconfig<enter><wait>"
       ],
       "boot_wait": "7s",
       "disk_size": "{{user `disk_size`}}",
@@ -205,7 +205,7 @@
     }
   ],
   "variables": {
-    "box_basename": "freebsd-10.4-i386",
+    "box_basename": "freebsd-12.0",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "1",
     "disk_size": "65536",
@@ -213,18 +213,17 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "install_path": "freebsd-10/install.sh",
-    "iso_checksum": "719ea971deb508936953be78ae9963caa9247d3ee437d0941b08fc7df7ce37b0",
+    "install_path": "freebsd-11/installerconfig",
+    "iso_checksum": "63abec8aeb915f1a021dd2df6c7767251f9b6e87f403b7ddf9a423446d0a5453",
     "iso_checksum_type": "sha256",
-    "iso_name": "FreeBSD-10.4-RELEASE-i386-disc1.iso",
+    "iso_name": "FreeBSD-12.0-RELEASE-amd64-disc1.iso",
     "memory": "1024",
     "mirror": "https://download.freebsd.org/ftp",
-    "mirror_directory": "releases/i386/i386/ISO-IMAGES/10.4",
-    "name": "freebsd-10.4-i386",
+    "mirror_directory": "releases/amd64/amd64/ISO-IMAGES/12.0",
+    "name": "freebsd-12.0",
     "no_proxy": "{{env `no_proxy`}}",
     "pkg_branch": "quarterly",
-    "template": "freebsd-10.4-i386",
+    "template": "freebsd-12.0-amd64",
     "version": "TIMESTAMP"
   }
 }
-
