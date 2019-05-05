@@ -10,9 +10,6 @@ sed -i s"/deb cdrom/#deb cdrom/" /etc/apt/sources.list
 # Disable release-upgrades
 sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades;
 
-# Update the package list
-apt-get -y update;
-
 # Disable systemd apt timers/services
 if [ "$major_version" -ge "16" ]; then
   systemctl stop apt-daily.timer;
@@ -36,6 +33,9 @@ EOF
 # Clean and nuke the package from orbit
 rm -rf /var/log/unattended-upgrades;
 apt-get -y purge unattended-upgrades;
+
+# Update the package list
+apt-get -y update;
 
 # Upgrade all installed packages incl. kernel and kernel headers
 apt-get -y dist-upgrade -o Dpkg::Options::="--force-confnew";
