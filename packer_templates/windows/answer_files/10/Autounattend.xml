@@ -1,7 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
   <settings pass="windowsPE">
-    <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+   <component name="Microsoft-Windows-PnpCustomizationsWinPE" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="amd64" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+       <!--
+            This makes the VirtIO drivers available to Windows, assuming that
+            the VirtIO driver disk at https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+            (see https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html#virtio-win-direct-downloads)
+            is available as drive E:
+       -->
+       <DriverPaths>
+           <PathAndCredentials wcm:action="add" wcm:keyValue="2">
+               <Path>E:\viostor\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="3">
+               <Path>E:\NetKVM\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="4">
+               <Path>E:\Balloon\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="5">
+               <Path>E:\pvpanic\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="6">
+               <Path>E:\qemupciserial\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="7">
+               <Path>E:\qxldod\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="8">
+               <Path>E:\vioinput\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="9">
+               <Path>E:\viorng\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="10">
+               <Path>E:\vioscsi\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="11">
+               <Path>E:\vioserial\w10\amd64</Path>
+           </PathAndCredentials>
+
+           <PathAndCredentials wcm:action="add" wcm:keyValue="12">
+               <Path>E:\vioserial\w10\amd64</Path>
+           </PathAndCredentials>
+       </DriverPaths>
+   </component>
+   <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <SetupUILanguage>
         <UILanguage>en-US</UILanguage>
       </SetupUILanguage>
@@ -11,7 +64,7 @@
       <UILanguageFallback>en-US</UILanguageFallback>
       <UserLocale>en-US</UserLocale>
     </component>
-    <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+    <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <DiskConfiguration>
         <Disk wcm:action="add">
           <CreatePartitions>
@@ -71,22 +124,22 @@
     </component>
   </settings>
   <settings pass="generalize">
-    <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+    <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <SkipRearm>1</SkipRearm>
     </component>
-    <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+    <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <PersistAllDeviceInstalls>false</PersistAllDeviceInstalls>
       <DoNotCleanUpNonPresentDevices>false</DoNotCleanUpNonPresentDevices>
     </component>
   </settings>
   <settings pass="oobeSystem">
-    <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+    <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <InputLocale>en-US</InputLocale>
       <SystemLocale>en-US</SystemLocale>
       <UILanguage>en-US</UILanguage>
       <UserLocale>en-US</UserLocale>
     </component>
-    <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+    <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <OOBE>
         <HideEULAPage>true</HideEULAPage>
         <HideLocalAccountScreen>true</HideLocalAccountScreen>
@@ -110,33 +163,33 @@
               <Value>vagrant</Value>
               <PlainText>true</PlainText>
             </Password>
-            <Group>Administrators</Group>
-            <DisplayName>Vagrant</DisplayName>
-            <Name>vagrant</Name>
             <Description>Vagrant User</Description>
+            <DisplayName>vagrant</DisplayName>
+            <Group>administrators</Group>
+            <Name>vagrant</Name>
           </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
-      <AutoLogon>
-        <Password>
-          <Value>vagrant</Value>
-          <PlainText>true</PlainText>
-        </Password>
-        <Enabled>true</Enabled>
-        <Username>vagrant</Username>
-      </AutoLogon>
+            <AutoLogon>
+                <Password>
+                    <Value>vagrant</Value>
+                    <PlainText>true</PlainText>
+                </Password>
+                <Username>vagrant</Username>
+                <Enabled>true</Enabled>
+            </AutoLogon>
       <FirstLogonCommands>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>PowerShell "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
-          <Description>Set Execution Policy 64 Bit</Description>
-          <Order>1</Order>
-          <RequiresUserInput>true</RequiresUserInput>
+            <CommandLine>cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+            <Description>Set Execution Policy 64 Bit</Description>
+            <Order>1</Order>
+            <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
-          <CommandLine>C:\Windows\SysWOW64\cmd /c PowerShell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
-          <Description>Set Execution Policy 32 Bit</Description>
-          <Order>2</Order>
-          <RequiresUserInput>true</RequiresUserInput>
+            <CommandLine>C:\Windows\SysWOW64\cmd.exe /c powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force"</CommandLine>
+            <Description>Set Execution Policy 32 Bit</Description>
+            <Order>2</Order>
+            <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
         <SynchronousCommand wcm:action="add">
           <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\base_setup.ps1</CommandLine>
@@ -157,6 +210,7 @@
       <DoNotOpenServerManagerAtLogon>true</DoNotOpenServerManagerAtLogon>
     </component>
     <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-IE-ESC" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+      <!--  Disable IE ESC.  -->
       <IEHardenAdmin>false</IEHardenAdmin>
       <IEHardenUser>false</IEHardenUser>
     </component>

@@ -51,9 +51,16 @@ _EOF_
   chmod +x /etc/rc.d/rc.local
 fi
 
-# delete any logs that have built up during the install
-find /var/log/ -name *.log -exec rm -f {} \;
+# truncate any logs that have built up during the install
+find /var/log -type f -exec truncate --size=0 {} \;
 
 # remove previous kernels that yum preserved for rollback
 yum install -y yum-utils
 package-cleanup --oldkernels --count=1 -y
+
+# remove the contents of /tmp and /var/tmp
+rm -rf /tmp/* /var/tmp/*
+
+# clear the history so our install isn't there
+export HISTSIZE=0
+rm -f /root/.wget-hsts

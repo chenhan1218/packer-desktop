@@ -3,13 +3,13 @@
     {
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "headless": "{{ user `headless` }}",
-      "http_directory": "http",
-      "output_directory": "../../builds/packer-{{user `template`}}-virtualbox",
+      "http_directory": "{{user `http_directory`}}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
-      "ssh_wait_timeout": "10000s",
+      "ssh_timeout": "10000s",
       "ssh_port": 22,
       "type": "virtualbox-ovf",
-      "source_path": "amazon2.ovf",
+      "source_path": "{{template_dir}}/amazon2.ovf",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "vboxmanage": [
@@ -32,7 +32,7 @@
   ],
   "post-processors": [
     {
-      "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
+      "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box",
       "type": "vagrant"
     }
   ],
@@ -47,20 +47,22 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
-        "scripts/update.sh",
-        "../_common/motd.sh",
-        "../_common/sshd.sh",
-        "scripts/networking.sh",
-        "../_common/vagrant.sh",
-        "../_common/virtualbox.sh",
-        "scripts/cleanup.sh",
-        "../_common/minimize.sh"
+        "{{template_dir}}/scripts/update.sh",
+        "{{template_dir}}/../_common/motd.sh",
+        "{{template_dir}}/../_common/sshd.sh",
+        "{{template_dir}}/scripts/networking.sh",
+        "{{template_dir}}/../_common/vagrant.sh",
+        "{{template_dir}}/../_common/virtualbox.sh",
+        "{{template_dir}}/scripts/cleanup.sh",
+        "{{template_dir}}/../_common/minimize.sh"
       ],
       "type": "shell"
     }
   ],
   "variables": {
     "box_basename": "amazon-2",
+    "build_directory": "../../builds",
+    "http_directory": "{{template_dir}}/http",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "1",
     "disk_size": "65536",
